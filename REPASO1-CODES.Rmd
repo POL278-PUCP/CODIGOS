@@ -441,7 +441,7 @@ ESTADISTICA INFERENCIAL
 
 ```{r}
 class(data$var)
-data$var[data$var == 9]= NA #solo si es necesario
+data$var[data$var == 9] = NA #solo si es necesario
 data$var=factor(data$var,
                  levels = levels(data$var),
                  labels = c("Muy en desacuerdo","Algo en desacuerdo","Algo de acuerdo","Muy de acuerdo"),
@@ -467,10 +467,11 @@ demo1
 
 
 2. Intervalos de confianza para una media
+============================================================
 
 ```{r}
 class()
-data$var[data$var == 9]= NA #solo si es necesario
+data$var[data$var == 9] = NA #solo si es necesario
 data$Var= as.numeric(data$var) # solo si es numérica
 summary(data$var)
 ```
@@ -495,8 +496,9 @@ ci.indicador
 
 
 3. Construcción de indicadores
-
+============================================================
 ```{r}
+# REVISAR EL CODEBOOK
 data$P4_9_1_A_A[data$P4_9_1_A_A == 9]= NA #solo si es necesario
 data$P4_9_1_A_A[data$P4_9_1_A_A == 8]= NA
 data$P4_9_1_A_B[data$P4_9_1_A_B == 9]= NA
@@ -890,106 +892,6 @@ table(data$GR)
 
 
 
-
-
-#3. Construcción de indicadores
-
-```{r}
-class(data$C3P205_1)
-```
-
-```{r}
-data$P4_9_1_A_A[data$P4_9_1_A_A == 9]= NA #solo si es necesario
-data$P4_9_1_A_A[data$P4_9_1_A_A == 8]= NA
-data$P4_9_1_A_B[data$P4_9_1_A_B == 9]= NA
-data$P4_9_1_A_B[data$P4_9_1_A_B == 8]= NA
-data$P4_9_1_A_C[data$P4_9_1_A_C == 9]= NA
-data$P4_9_1_A_C[data$P4_9_1_A_C == 8]= NA
-data$P4_9_1_A_D[data$P4_9_1_A_D == 9]= NA
-data$P4_9_1_A_D[data$P4_9_1_A_D == 8]= NA
-data$P4_9_1_A_E[data$P4_9_1_A_E == 9]= NA
-data$P4_9_1_A_E[data$P4_9_1_A_E == 8]= NA
-```
-
-```{r}
-data$P4_9_1_A_B=car::recode(data$P4_9_1_A_B,"1=4; 2=3; 3=2; 4=1") #recodificas solo si es necesario, mirar el despliegue de tus variables. 
-data$P4_9_1_A_C=car::recode(data$P4_9_1_A_C,"1=4; 2=3; 3=2; 4=1")
-data$P4_9_1_A_E=car::recode(data$P4_9_1_A_E,"1=4; 2=3; 3=2; 4=1")
-
-```
-
-```{r}
-data$P4_9_1_A_A = as.numeric(data$P4_9_1_A_A) #Solo si es necesario
-data$P4_9_1_A_B = as.numeric(data$P4_9_1_A_B)
-data$P4_9_1_A_C = as.numeric(data$P4_9_1_A_C)
-data$P4_9_1_A_D = as.numeric(data$P4_9_1_A_D)
-data$P4_9_1_A_E = as.numeric(data$P4_9_1_A_E)
-
-#forma corta de convertir varias variables:
-datalapop[,c(48:52)]=lapply(datalapop[,c(48:52)],as.numeric) #columnas
-```
-
-```{r}
-data$xeno = data$P4_9_1_A_A+data$P4_9_1_A_B+data$P4_9_1_A_C+data$P4_9_1_A_D+data$P4_9_1_A_E
-summary(data$xeño)
-```
-
-
-```{r}
-sum(is.na(data$xeno))
-data1 = data[complete.cases(data$xeno),]
-summary(data1$xeno)
-```
-
-
-Para una mejor comprensión, usaré una escala de 0 - 100
-
-```{r}
-data1$xeno = data1$xeno-elvalormínimo 
-data1$xeno = data1$xeno/(max(data1$xeno)-min(data1$xeno))
-data1$xeno = data1$xeno*100
-```
-
-```{r}
-summary(data1$xeno)
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 PARA EL FINAL
 ============================================================
 
@@ -1294,39 +1196,22 @@ Ahora, veo los colores de manera vertical.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##Trabajo de variables ordinales a dicotómicas a dummy 
 
 ###ING4
 
 ```{r}
 class(lapop1$ing4)
+
 lapop1$ing4[lapop1$ing4 == 888888]= NA 
-lapop1$ing4[lapop1$ing4== 988888]= NA
-lapop1$ing4=car::recode(lapop1$ing4,"1=0; 2=0; 3=0; 4=0; 5=1; 6=1; 7=1") ##"1:4=0
+lapop1$ing4[lapop1$ing4 == 988888]= NA
+
+lapop1$ing4=car::recode(lapop1$ing4,"1=0; 2=0; 3=0; 4=0; 5=1; 6=1; 7=1") #"1:4=0
 ```
 
 ```{r}
-lapop1$ing4= factor(lapop1$ing4)
-levels(lapop1$ing4)=c("En desacuerdo","De acuerdo")
+lapop1$ing4 = factor(lapop1$ing4)
+levels(lapop1$ing4) = c("En desacuerdo","De acuerdo")
 class(lapop1$ing4)
 table(lapop1$ing4)
 ```
