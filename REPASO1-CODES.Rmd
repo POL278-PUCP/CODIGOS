@@ -574,8 +574,10 @@ COMPARACIÓN DE GRUPOS
 Primero tengo que tener mi variable númerica, puede ser un indicador, con sus casos completos, con esa nueva data (data1), trabajo la variable cualitativa, tal como está a continuación
 ```{r}
 class(data1$P4_5)
-data1$P4_5[data1$P4_5 == 9]= NA
-data1$P4_5[data1$P4_5 == 8]= NA
+
+data1$P4_5[data1$P4_5 == 9]= NA #REVISAR EL CODEBOOK
+data1$P4_5[data1$P4_5 == 8]= NA #REVISAR EL CODEBOOK
+
 table(data1$P4_5)
 data1$P4_5=factor(data1$P4_5,
                    levels = c(1:2),
@@ -615,9 +617,13 @@ ci.indicador1
 ci.indicador0
 ```
 
+## **GRÁFICA**
 ```{r message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.5, fig.align="center", fig.cap="Figure 1: Índice de promedio de confianza entre grupos (LAPOP 2019)."}
 library(gplots)
-plotmeans(data1$xeno ~ data1$P4_5, connect = F, mean.labels=TRUE, digits=2, col="black", barwidth = 2, 
+plotmeans(data1$xeno ~ data1$P4_5, 
+          connect = F, mean.labels=T, digits=2, col="black", barwidth = 2, 
+          xlab="Grupos", 
+          ylab="",
           main = "relación entre el índice de xenofobia y si las personas tienen una relación con extranjeros que viven en el Perú ")
 ```
 
@@ -625,7 +631,10 @@ plotmeans(data1$xeno ~ data1$P4_5, connect = F, mean.labels=TRUE, digits=2, col=
 
   + Para explorar la relación entre el índice de xenofobia y si las personas tienen una relación con extranjeros que viven en el Perú corresponde utilizar la prueba t para muestras independientes. Frente a un p-value menor a 0.05, en este caso 0.00022, concluimos que se puede rechazar la hipótesis nula que plantea que no existe diferencia de promedios entre los grupos. En consecuencia, y a partir de lo reportado en los gráficos de barras de error, se tiene evidencia estadística para afirmar que existe diferencias entre la relación entre el índice de xenofobia y  las personas tienen una relación con extranjeros que viven en el Perú, siendo los que no mantienen una relación con extranjeros, los que tienen un mayor indice de xenofobia. 
 
+
+
 1.1. Prueba T para proporciones
+============================================================
 
 Primero, hay una proporción anterior que ya ha sido medida y tiene sus datos completos, en base, a esa nueva data (datos) podemos ejercer la comparación. 
 ```{r}
@@ -663,12 +672,22 @@ demo4
 prop.test(x=c(88,230), n=c(917,1002), conf.level = 0.95)
 ```
 
-```{r}
+
+
+## **GRAFICA**
+```{r message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.55, fig.align="center", fig.cap="Figure 3: Diferencia de proporciones entre escuelas públicas urbanas y rurales (ENDO 2018)."}
 library(ggplot2)
-p <- ggplot(datos = datos,
-mapping = aes(x = factor(datos$SEXO),
-fill = factor(datos$VS5F)))
-p + geom_bar(position = 'fill', stat = 'count')
+ggplot(datos = datos, 
+            mapping = aes(x = factor(datos$SEXO), 
+              fill = factor(datos$VS5F))) + 
+  geom_bar(position = 'fill', stat = 'count') + 
+  scale_fill_brewer(palette = "Set1") + 
+  labs(y = "Cantidad de escuelas", 
+       x = "Escuelas", 
+       fill = "Tipo de escuelas", 
+       title = "Diferencia de proporciones entre escuelas públicas urbanas y rurales (ENDO 2018).", 
+       subtitle = "", 
+       caption = "Elaboración propia con base en datos recogidos por la ENDO 2018. @luccemhu")
 ```
 
 ## **INTERPRETACION**: 
@@ -677,8 +696,13 @@ p + geom_bar(position = 'fill', stat = 'count')
 
   + En particular, a un nivel de confianza del 95%, el porcentaje de mujeres acosadas varia entre un 20% y un 26%, mientras que el porcentaje de varones acosados varia entre un 7.8%  y 11.7%. Es decir, la proporción o el porcentaje de mujeres acosadas es cuantitativamente mayor en comparación a los hombres. Por tanto, las políticas contra el acoso deberían estar dirigidas o priorizadas en este sector.
 
-2. Prueba Anova 
 
+
+
+
+
+2. Prueba Anova 
+============================================================
 Requisitos: 
 ```{r}
 library(nortest)
@@ -731,10 +755,10 @@ TukeyHSD(anova)
 
 ```{r fig.height=6, fig.width=9}
 library(gplots)
-plotmeans(data1$xeno ~ data1$P4_6, connect=F, barwidth=3, 
+plotmeans(data1$xeno ~ data1$P4_6, connect=F, barwidth=3, p = 0.95, 
           xlab="Percepción sobre el número de extranjeros en el Perú",
           ylab="Indice de xenofobía",
-          main="Indice de xenofobia según percepción sobre el número de extranjeros en el Perú")
+          main="Indice de xenofobia según percepción sobre el número de extranjeros en el Perú \n Mean Plot with 95% CI")
 ```
 
 
@@ -750,7 +774,7 @@ o "es el número adecuado". Al obtener un valor menor a 0.05, rechazamos la hip�
 
 
 # PRUEBA CHI CUADRADO
-
+============================================================
 Dos variables ordinales: 
 En este caso, ya había trabajado con la variables A, pero con la D, todavía. 
 
@@ -966,10 +990,12 @@ summary(data1$xeno)
 
 
 
-#Final, guía de códigos: 
+PARA EL FINAL
+============================================================
 
-##Correlación: Solo con numéricos
 
+CORRELACION: SOLO con/son NUMERICOS
+============================================================
 Para variable 1 
 
 ```{r}
