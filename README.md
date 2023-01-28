@@ -1,2 +1,4 @@
-# REPASO-CODES
- plantilla para E1
+REPASO-CODES
+============================================================
+
+ Plantilla/manual para E1
