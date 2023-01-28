@@ -617,7 +617,7 @@ ci.indicador0
 
 ```{r message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.5, fig.align="center", fig.cap="Figure 1: Índice de promedio de confianza entre grupos (LAPOP 2019)."}
 library(gplots)
-plotmeans(data1$xeno ~ data1$P4_5, 
+plotmeans(data1$xeno ~ data1$P4_5, connect = F, mean.labels=TRUE, digits=2, col="black", barwidth = 2, 
           main = "relación entre el índice de xenofobia y si las personas tienen una relación con extranjeros que viven en el Perú ")
 ```
 
