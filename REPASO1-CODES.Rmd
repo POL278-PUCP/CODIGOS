@@ -498,9 +498,10 @@ ci.indicador
 3. Construcción de indicadores
 ============================================================
 ```{r}
-# REVISAR EL CODEBOOK
+# REVISAR EL CODEBOOK: CONVERTIR 
 data$P4_9_1_A_A[data$P4_9_1_A_A == 9]= NA #solo si es necesario
 data$P4_9_1_A_A[data$P4_9_1_A_A == 8]= NA
+
 data$P4_9_1_A_B[data$P4_9_1_A_B == 9]= NA
 data$P4_9_1_A_B[data$P4_9_1_A_B == 8]= NA
 data$P4_9_1_A_C[data$P4_9_1_A_C == 9]= NA
@@ -512,7 +513,8 @@ data$P4_9_1_A_E[data$P4_9_1_A_E == 8]= NA
 ```
 
 ```{r}
-data$P4_9_1_A_B=car::recode(data$P4_9_1_A_B,"1=4; 2=3; 3=2; 4=1") #recodificas solo si es necesario, mirar el despliegue de tus variables. 
+data$P4_9_1_A_B=car::recode(data$P4_9_1_A_B,"1=4; 2=3; 3=2; 4=1") #recodificas solo si es necesario, mirar el despliegue de tus variables.
+
 data$P4_9_1_A_C=car::recode(data$P4_9_1_A_C,"1=4; 2=3; 3=2; 4=1")
 data$P4_9_1_A_E=car::recode(data$P4_9_1_A_E,"1=4; 2=3; 3=2; 4=1")
 
@@ -520,6 +522,7 @@ data$P4_9_1_A_E=car::recode(data$P4_9_1_A_E,"1=4; 2=3; 3=2; 4=1")
 
 ```{r}
 data$P4_9_1_A_A = as.numeric(data$P4_9_1_A_A)
+
 data$P4_9_1_A_B = as.numeric(data$P4_9_1_A_B)
 data$P4_9_1_A_C = as.numeric(data$P4_9_1_A_C)
 data$P4_9_1_A_D = as.numeric(data$P4_9_1_A_D)
@@ -530,19 +533,14 @@ data$xeno = data$P4_9_1_A_A+data$P4_9_1_A_B+data$P4_9_1_A_C+data$P4_9_1_A_D+data
 
 ```{r}
 sum(is.na(data$xeno))
-```
+#summary(data$xeno)
 
-```{r}
-summary(data$xeno)
-```
-
-```{r}
 data1 = data[complete.cases(data$xeno),]
 summary(data1$xeno)
 ```
 
 
-Para una mejor comprensión, usaré una escala de 0 - 10 
+  - Para una mejor comprensión, usaré una escala de 0 - 10 
 ```{r}
 data1$xeno = data1$xeno-elvalormínimo 
 data1$xeno = data1$xeno/(max(data1$xeno)-min(data1$xeno))
@@ -553,12 +551,29 @@ data1$xeno = data1$xeno*10
 summary(data1$xeno)
 ```
 
+  - gráficos basicos de R
 ```{r}
 boxplot(data1$xeno)
+hist(data1$xeno, main = "indice de xenofobia en el perú ",)
 ```
 
-```{r}
-hist(data1$xeno, main = "indice de xenofobia en el perú ",)
+## **GRAFICO DE CAJAS (BOXPLOT) E HISTOGRAMA (HIST)**
+```{r fig.show='hold', message=FALSE,warning=FALSE,eval=TRUE,fig.width=9.5,fig.height=5.55, fig.align="center", fig.cap="Figure 1: Docentes según sexo (ENDO 2020)."}
+library(ggplot2)
+library(plotly)
+p1 <- ggplot(datalapop, aes(x = "", y = psc8, color ="")) + 
+  geom_boxplot() + coord_flip() +
+  theme(legend.position = "top", axis.text.y = element_blank(), panel.background=element_rect(fill = "white", colour = "white")) + 
+  geom_jitter(shape = 16, position = position_jitter(0.2)) + 
+  labs(title = "Edad de los encuestados", x = "", y ="Index", subtitle = "", caption = "ENDO 2020")
+ggplotly(p1)
+
+# HIST:
+ggplot(datalapop, aes(x = q2, color = "")) + 
+  geom_histogram(fill = "white", alpha = 0.5, position = "identity") +  #agregar bins = 30 o breaks=seq()
+    labs(title ="Edad de los encuestados", y = "", x="Index", subtitle = "", caption = "ENDO 2020")+
+    theme(plot.title = element_text(hjust = 0.5)) + 
+    theme(panel.background=element_rect(fill = "white", colour = "white"))
 ```
 
 ## **INTERPRETACION**: 
