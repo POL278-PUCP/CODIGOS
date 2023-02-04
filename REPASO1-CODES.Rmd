@@ -56,7 +56,7 @@ data1$Var = as.factor(data1$var)
 
 data1$var = factor(data1$var,
                    levels = c(1:2),  #si hay datos perdidos, sino sería: levels = levels(data1$var)
-                   labels = c("x","y"),
+                   labels = c("x", "y"),
                  ordered = F)
 ```
 
@@ -75,14 +75,16 @@ library(Hmisc)
 describe(data$var) # Moda
 ```
  
-  + Respecto a la moda, es decir, con mayor frecuencia, hay mas docentes (`1067`) del género femenino en Lima Metropolitana.
+  + Respecto a la moda, es decir, con mayor frecuencia, hay mas docentes (`1067`) 
+  del género femenino en Lima Metropolitana.
 ```{r}
 m = 100 - 4.6072508 # % - MODA%
 m
 d = (1324 - 691) - 52 # n - Moda
 d
 ``` 
-  + Finalmente, el porcentaje que no es representado por la moda, a saber, la variacion modal del genero de docentes es de 19.47% (`258`).
+  + Finalmente, el porcentaje que no es representado por la moda, a saber, 
+  la variacion modal del genero de docentes es de 19.47% (`258`).
   
 ## **GRAFICO DE BARRAS (BARPLOT)** (NO OLVIDAR EL DATA FRAME) (PREFERIR BARRAS)
 ```{r message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.55, fig.align="center", fig.cap="Figure 1: Docentes según sexo (ENDO 2020)."}
@@ -94,7 +96,9 @@ library(ggplot2)
 bp = ggplot(grafico1, aes(x = reorder(Reg,Freq), y = Freq, fill = Reg)) +
   geom_bar(stat = "identity") +
     coord_flip() + 
-    labs(title = "Docentes según sexo (ENDO 2020)", y = "Frecuencias", x = "Categorías", subtitle = "", caption = "ENDO 2020") +
+    labs(title = "Docentes según sexo (ENDO 2020)", 
+         y = "Frecuencias", x = "Categorías", 
+         subtitle = "", caption = "ENDO 2020") +
     theme(plot.title = element_text(hjust = 1)) + 
     theme(panel.background = element_rect(fill = "white", colour = "white")) + 
     geom_text(aes(label = Freq), vjust = 0.5, color ="Black", size = 5)
@@ -103,9 +107,11 @@ bp
  
 ## GRAFICO DE SECTORES (PIE CHART)
 ```{r message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.55, fig.align="center", fig.cap="Figure 1: Docentes según sexo (ENDO 2020)."}
-pc = ggplot(grafico1, aes(x="", y = Freq, fill = Reg)) +
+pc = ggplot(grafico1, aes(x = "", y = Freq, fill = Reg)) +
   ggtitle("Índice de democracia") + #Agregamos el título
-  geom_bar(stat = "identity", width = 1, color = "white") +
+  geom_bar(stat = "identity",
+           width = 1,
+           color = "white") +
   coord_polar("y", start = 0) +
   theme_void()
 pc + scale_fill_brewer(palette = "Dark2") #Color del gráfico
@@ -113,11 +119,18 @@ pc + scale_fill_brewer(palette = "Dark2") #Color del gráfico
 
 ## **INTERPRETACION:**
 
- + Del total de docentes encuestadxs (`1325`) en la ENDO 2020, la mayoría, el 80.5% (`1067`) son mujeres, mientras que menos del 20% (`258`) representan a docentes hombres.  
+ + Del total de docentes encuestadxs (`1325`) en la ENDO 2020, la mayoría, 
+ el 80.5% (`1067`) son mujeres, mientras que menos del 20% (`258`) representan 
+ a docentes hombres.  
  
 Otra opcion a la interpretacion del grafico:
 
-  + Del total de docentes encuestadxs (`1325`) en la ENDO 2020, mas del 60% de docentes encuestados pertencen a una condicion laboral reconocida como nombrados en la institucion educativa en la cual trabajan, seguido de un 35% que son docentes contratados por concurso publico y en menos proporcion solo 7 docentes son contratados con otra modalidad, exactamente: 64.72% (`857`) nombrados, 34.74% (`460`) por concurso público y 0.52% (`7`) por otro modalidad.
+  + Del total de docentes encuestadxs (`1325`) en la ENDO 2020, mas del 60% 
+  de docentes encuestados pertencen a una condicion laboral reconocida como 
+  nombrados en la institucion educativa en la cual trabajan, seguido de un 35% 
+  que son docentes contratados por concurso publico y en menos proporcion solo 
+  7 docentes son contratados con otra modalidad, exactamente: 64.72% (`857`) 
+  nombrados, 34.74% (`460`) por concurso público y 0.52% (`7`) por otro modalidad.
 
 
 
@@ -153,14 +166,16 @@ library(DescTools)
 Mode(dataDRE$P1_8, na.rm = T)
 ```
 
- + Respecto a la moda, es decir, con mayor frecuencia, hay mas personas jovenes (`35`) que tienen 25 años. 
+ + Respecto a la moda, es decir, con mayor frecuencia, 
+ hay mas personas jovenes (`35`) que tienen 25 años. 
 ```{r}
 e = 100 - 64.7280967 # % - MODA%
 e
 f = 1324 - 857 # n - Moda
 f
 ``` 
- + El porcentaje que no es representado por la moda, a saber, la variacion modal es de 85% (`820`).
+ + El porcentaje que no es representado por la moda, a saber, 
+ la variacion modal es de 85% (`820`).
 
 ```{r}
 Median(dataDRE$P1_8, na.rm = T)
@@ -223,7 +238,8 @@ library(ggplot2)
 bp = ggplot(grafico1, aes(x=reorder(Reg,Freq), y=Freq, fill=Reg)) +
   geom_bar(stat = "identity") +
     coord_flip() + 
-    labs(title="Índice de democracia", y="Frecuencias", x="Categorías", subtitle = "", caption = "ENDO 2020")+
+    labs(y="Frecuencias", x="Categorías", 
+         title="Índice de democracia", subtitle = "", caption = "ENDO 2020") +
     theme(plot.title = element_text(hjust = 1)) + 
     theme(panel.background=element_rect(fill = "white", colour = "white")) + 
     geom_text(aes(label=Freq), vjust=0.5, color="Black", size=5)
@@ -232,11 +248,15 @@ bp
 
 ## **INTERPRETACION:**
 
-  + Del total de encuestadxs (`1325`), la mayoría, el 80.5% (`1067`), de docentes encuestadxs en la ENDO 2020 son mujeres, mientras que menos del 20% (`258`) representan a docentes hombres. 
+  + Del total de encuestadxs (`1325`), la mayoría, el 80.5% (`1067`), de docentes 
+  encuestadxs en la ENDO 2020 son mujeres, mientras que menos del 20% (`258`) 
+  representan a docentes hombres. 
   
 En caso haya más escalas:
   
-  + Del total de encuestadxs (`1325`), la mayoría, el 80.5% (`1067`), de docentes encuestadxs en la ENDO 2020 se encuentran en la primera escala magisterial, solo 17 docentes (1.9%) se ubican en la escala magisterial 6.  
+  + Del total de encuestadxs (`1325`), la mayoría, el 80.5% (`1067`), de docentes 
+  encuestadxs en la ENDO 2020 se encuentran en la primera escala magisterial, solo 
+  17 docentes (1.9%) se ubican en la escala magisterial 6.  
  
 ## **GRAFICO DE CAJAS (BOXPLOT)**
 ```{r message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.55, fig.align="center", fig.cap="Figure 4: Docentes según sexo (ENDO 2020)."}
@@ -244,9 +264,11 @@ library(ggplot2)
 library(plotly)
 p2 <- ggplot(datalapop, aes(x="", y=psc8, color ="")) + 
   geom_boxplot() + coord_flip() +
-  theme(legend.position = "top", axis.text.y = element_blank(), panel.background=element_rect(fill = "white", colour = "white")) + 
+  theme(legend.position = "top", axis.text.y = element_blank(), 
+        panel.background=element_rect(fill = "white", colour = "white")) + 
   geom_jitter(shape=16, position=position_jitter(0.2)) + 
-  labs(title = "Edad de los encuestados", x="", y="Index", subtitle = "", caption = "ENDO 2020")
+  labs(x="", y="Index", 
+       title = "Edad de los encuestados",  subtitle = "", caption = "ENDO 2020")
 ggplotly(p2)
 ```
 
@@ -823,7 +845,7 @@ data = data[complete.cases(data0$P4_9_1_A_D),]
 
 
 ```{r}
-table1=table(data$P4_9_1_A_A,data$P4_9_1_A_D)
+table1 = table(data$P4_9_1_A_A, data$P4_9_1_A_D)
 table1
 ```
 
@@ -832,12 +854,13 @@ prop.table(table1, 2)
 ```
 
 ```{r}
-table1.1=prop.table(table1, 2)*100
+table1.1 = prop.table(table1, 2) * 100
 table1.1
 ```
 
 ```{r}
-barplot(table1.1, main = "Percepción respecto a que los extranjeros en el Perú contribuyen a la economía peruana según traen ideas innovadoras ", legend.text=T)
+barplot(table1.1, 
+        main = "Percepción respecto a que los extranjeros en el Perú contribuyen a la economía peruana según traen ideas innovadoras ", legend.text = T)
 ```
 
 ```{r}
@@ -896,9 +919,9 @@ podemos indicar que
 
 Skills: 
 ```{r creación de grupos}
-data$GR= factor(ifelse(data$MT3 == 3,1, # el tres se convierte en el grupo como 1 
-			ifelse(data$MT3 == 5,2,
-			ifelse(data$MT3 == 6,3,0))))
+data$GR = factor(ifelse(data$MT3 == 3, 1, # el tres se convierte en el grupo como 1
+                        ifelse(data$MT3 == 5, 2,
+                               ifelse(data$MT3 == 6, 3, 0))))
 table(data$GR)
 ```
 
@@ -1004,11 +1027,11 @@ Primero trabajo las variables que quiero correlacionar, las limpios, si es hacer
 ##Modelo 1
 ```{r}
 sum(is.na(lapop1$apoyo))
-lapop1.1= lapop1[complete.cases(lapop1$ing4),] #Aquí hago que ambas variables tengan la misma cantidad de datos
+lapop1.1 = lapop1[complete.cases(lapop1$ing4), ] #Aquí hago que ambas variables tengan la misma cantidad de datos
 ```
 
 ```{r}
-modelo1.1<-lm(apoyo~ing4, data=lapop1.1) #variable dependiente, luego independiente, trabajo con data creada
+modelo1.1 <- lm(apoyo ~ ing4, data = lapop1.1) #variable dependiente, luego independiente, trabajo con data creada
 summary(modelo1.1)
 ```
 
@@ -1019,18 +1042,18 @@ Interpretación: Debido a que el p-value del modelo es significativo (8.906e-13)
 
 ```{r}
 sum(is.na(lapop1$eff1))
-lapop1.2= lapop1[complete.cases(lapop1$eff1),]
+lapop1.2 = lapop1[complete.cases(lapop1$eff1), ]
 ```
 
 ```{r}
-modelo1.2<-lm(apoyo~eff1, data=lapop1.2)
+modelo1.2 <- lm(apoyo ~ eff1, data = lapop1.2)
 summary(modelo1.2)
 ```
 
 #Modelo 3: Para variable numérica + numérica
 
 ```{r}
-modelo1.3<-lm(apoyo~confianza, data=lapop1.3)
+modelo1.3 <- lm(apoyo ~ confianza, data = lapop1.3)
 summary(modelo1.3)
 ```
 
@@ -1053,7 +1076,10 @@ library(broom.mixed)
 ```
 
 ```{r}
-export_summs(modelo1.1,modelo1.2,modelo1.3, scale = FALSE,
+export_summs(modelo1.1,
+             modelo1.2,
+             modelo1.3,
+             scale = FALSE,
              error_format = "[{conf.low}, {conf.high}]")
 ```
 
@@ -1065,8 +1091,8 @@ Se concluye que,el modelo 3 que toma en cuenta la variable "Indice de confianza"
 Convierto mi dependiente 
 
 ```{r}
-data$demo_dummy<- as.factor(data$demo_dummy)
-levels(data$demo_dummy)<-c("no demo","demo")
+data$demo_dummy <- as.factor(data$demo_dummy)
+levels(data$demo_dummy) <- c("no demo", "demo")
 table(data$demo_dummy)
 ```
 
@@ -1095,9 +1121,9 @@ Limpio base y hago una sola, con todas las variable
 sum(is.na(lapop2$apoyo))
 sum(is.na(lapop2$ing4))
 sum(is.na(lapop2$soct2))
-lapop2.1= lapop2[complete.cases(lapop2$ing4),]
-lapop2.1= lapop2.1[complete.cases(lapop2.1$soct2),]
-lapop2.1= lapop2.1[complete.cases(lapop2.1$apoyo),]
+lapop2.1 = lapop2[complete.cases(lapop2$ing4), ]
+lapop2.1 = lapop2.1[complete.cases(lapop2.1$soct2), ]
+lapop2.1 = lapop2.1[complete.cases(lapop2.1$apoyo), ]
 ```
 
 ```{r}
@@ -1108,7 +1134,7 @@ sum(is.na(lapop2.1$soct2))
 
 Hago modelo
 ```{r}
-modelo2.1<-lm(tolerancia~apoyo+ing4+soct2_Mejor, data=lapop2.1)
+modelo2.1 <- lm(tolerancia ~ apoyo + ing4 + soct2_Mejor, data = lapop2.1)
 summary(modelo2.1)
 ```
 
@@ -1151,7 +1177,8 @@ lapop2.2=dummy_cols(lapop2.2, select_columns = c("q1"))
 
 En base al modelo, hago mi chiste
 ```{r}
-modelo2.2<-lm(tolerancia~apoyo+ing4+soct2_Mejor+q1_Mujer+q2, data=lapop2.2)
+modelo2.2 <- lm(tolerancia ~ apoyo + ing4 + soct2_Mejor + q1_Mujer + q2, 
+                data = lapop2.2)
 summary(modelo2.2)
 ```
 

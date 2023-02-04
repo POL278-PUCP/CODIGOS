@@ -48,3 +48,39 @@ drive_find(n_max = 10)
   
   
   
+  
+  
+  
+# Para comentar múltiples líneas de código: agrega el numeral al lado izquierdo en cada linea de codigo:
+  ctrl/cmd + shift + c
+  
+# Para movernos en cada pestaña de los scripts:
+# Desplazarse por múltiples pestañas de código:
+  ctrl + alt + (flechas: izquierda o derecha)
+  
+  
+# Para insertar/crear secciones (títulos):  
+  ctrl/cmd + shift + R
+  
+# Para buscar y reemplazar varias palabras:
+  ctrl + F
+  
+# Dar formato ordenado al código:
+  ctrl + A
+
+  
+
+# más atajos: puedes escoger los que más te convengan
+  alt +shift + k
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
