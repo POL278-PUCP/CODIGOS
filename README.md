@@ -5,7 +5,7 @@ Extraído del archivo `index.Rmd` Plantilla/manual para E1
  
 `NOTA`: Crear una organizacion para Estadistica 1 y transferir este repositorio
 
-```markdown
+````markdown
 ---
 title: "REPASO: ESTADISTICA PARA EL ANALISIS POLITICO 1 (POL278-0590)"
 output:
@@ -18,7 +18,8 @@ output:
     highlight: github 
     code_folding: "hide"
 ---
-```
+````
+
 PD1. Introducción al R y a base de datos, Análisis descriptivo en R
 ============================================================
 ## Importar data:
