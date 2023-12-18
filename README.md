@@ -7,7 +7,7 @@ Co-authored-by: Luis Eduardo Valverde Ramos <https://github.com/LuisEduardoValve
 
 Co-authored-by: Javier Flores Roque <>
 
-
+------------------------------------------------------------------------------------------
 
 Extraído del archivo `index.Rmd` Plantilla/manual para E1
  
