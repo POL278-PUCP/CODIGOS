@@ -1,6 +1,14 @@
 REPASO-CODES
 ============================================================
 
+Contribuidores:
+
+Co-authored-by: Luis Eduardo Valverde Ramos <https://github.com/LuisEduardoValverdeRamos>
+
+Co-authored-by: Javier Flores Roque <>
+
+
+
 Extraído del archivo `index.Rmd` Plantilla/manual para E1
  
 `NOTA`: Crear una organizacion para Estadistica 1 y transferir este repositorio
