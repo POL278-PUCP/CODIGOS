@@ -3,7 +3,7 @@ REPASO-CODES
 
 Contribuidores:
 
--  Co-authored-by: Luis Eduardo Valverde Ramos <https://github.com/LuisEduardoValverdeRamos>
+-  Co-authored-by: [Luis Eduardo Valverde Ramos](https://github.com/LuisEduardoValverdeRamos) <https://github.com/LuisEduardoValverdeRamos>
 
 -  Co-authored-by: Javier Flores Roque <>
 
